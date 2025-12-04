@@ -8,7 +8,7 @@ const CONFIG = {
         "NBCH": "1a6pwlwjnmdl3U43JeLBDqmVBKepJfy-RsUKE8e7GxE0",
         "VLG": "1a8Q2fNaIMNUnctpktbnu_I9GgKCzWW_S4wf39QGpc-M"
     },
-    API_URL: "https://script.google.com/macros/s/AKfycby_7X4zWfkC8kYV2Lk__wh8XXoWyBqvvyLHytmUrSLspVGjR6RQ0Oi2oFi__kfPPgnJ1A/exec"
+    API_URL: "https://script.google.com/macros/s/AKfycbzkLbw9dekhpuQsctrdTRkMitrNhSsg7bqDRpSYnhcPqScLlhRzisoTcx1p8ECbzUTF/exec"
 };
 
 // Глобальные переменные
@@ -241,4 +241,5 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Устанавливаем фокус на поле ввода при открытии поиска
     gmInput.focus();
+
 });
