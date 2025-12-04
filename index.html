@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Поиск довозов РЦ</title>
+    <meta name="description" content="Приложение для поиска довозов по всем Распределительным Центрам">
+    
+    <!-- PWA Мета-теги -->
+    <meta name="theme-color" content="#4CAF50">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" href="icons/icon-192.png">
+    <link rel="apple-touch-icon" href="icons/icon-192.png">
+    
+    <!-- Стили -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Google Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <!-- Главный экран - выбор города -->
+    <div id="citySelection" class="screen active">
+        <div class="container">
+            <h1>🔍 Поиск довозов</h1>
+            <p class="subtitle">Выберите свой Логистический центр:</p>
+            
+            <div class="city-buttons">
+                <button class="city-btn green" onclick="selectCity('ULN', 'Ульяновск')">
+                    <span class="city-name">УЛЬЯНОВСК</span>
+                    <span class="city-code">(ГМ: 1,2,4,9)</span>
+                </button>
+                
+                <button class="city-btn blue" onclick="selectCity('VRN', 'Воронеж')">
+                    <span class="city-name">ВОРОНЕЖ</span>
+                    <span class="city-code">(ГМ: 5)</span>
+                </button>
+                
+                <button class="city-btn orange" onclick="selectCity('SMR', 'Самара')">
+                    <span class="city-name">САМАРА</span>
+                    <span class="city-code">(ГМ: 6)</span>
+                </button>
+                
+                <button class="city-btn purple" onclick="selectCity('KRD', 'Краснодар')">
+                    <span class="city-name">КРАСНОДАР</span>
+                    <span class="city-code">(ГМ: 3)</span>
+                </button>
+                
+                <button class="city-btn brown" onclick="selectCity('NBCH', 'Набережные Челны')">
+                    <span class="city-name">НАБЕРЕЖНЫЕ ЧЕЛНЫ</span>
+                    <span class="city-code">(ГМ: 7)</span>
+                </button>
+                
+                <button class="city-btn gray" onclick="selectCity('VLG', 'Волгоград')">
+                    <span class="city-name">ВОЛГОГРАД</span>
+                    <span class="city-code">(ГМ: 8)</span>
+                </button>
+            </div>
+            
+            <div class="info-box">
+                <p>📱 <strong>Установите это приложение:</strong></p>
+                <p>1. Нажмите "Поделиться" в браузере</p>
+                <p>2. Выберите "На экран "Домой""</p>
+                <p>3. Работает оффлайн после установки</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Экран поиска -->
+    <div id="searchScreen" class="screen">
+        <div class="container">
+            <!-- Шапка с городом -->
+            <div class="header">
+                <button class="back-btn" onclick="goBack()">
+                    <span class="material-icons">arrow_back</span>
+                </button>
+                <h2 id="currentCity">РЦ: Ульяновск</h2>
+                <button class="help-btn" onclick="showHelp()">
+                    <span class="material-icons">help_outline</span>
+                </button>
+            </div>
+
+            <!-- Поле ввода -->
+            <div class="input-group">
+                <input type="text" 
+                       id="gmInput" 
+                       placeholder="Введите номер ГМ (только цифры)"
+                       inputmode="numeric"
+                       pattern="[0-9]*"
+                       maxlength="20">
+                <button class="search-btn" onclick="searchGm()">
+                    <span class="material-icons">search</span>
+                    НАЙТИ
+                </button>
+            </div>
+
+            <!-- Результат -->
+            <div class="result-container">
+                <div id="resultText">
+                    🔍 Введите номер ГМ для поиска<br><br>
+                    Пример: 112472979<br><br>
+                    <small>Номер ГМ содержит только цифры</small>
+                </div>
+            </div>
+
+            <!-- Индикатор загрузки -->
+            <div id="loading" class="loading">
+                <div class="spinner"></div>
+                <p>Ищем в базе данных...</p>
+            </div>
+
+            <!-- Информация о приложении -->
+            <div class="app-info">
+                <p>⚡ PWA приложение • Работает на всех устройствах</p>
+                <p>📱 Установите на iPhone/Android как обычное приложение</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Помощь -->
+    <div id="helpModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>📋 Помощь по использованию</h3>
+                <button class="close-btn" onclick="closeHelp()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="helpContent"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Уведомления -->
+    <div id="toast" class="toast"></div>
+
+    <!-- Скрипты -->
+    <script src="app.js"></script>
+    <script src="pwa.js"></script>
+</body>
+</html>

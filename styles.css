@@ -1,0 +1,360 @@
+/* Общие стили */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.screen {
+    display: none;
+    width: 100%;
+    max-width: 500px;
+}
+
+.screen.active {
+    display: block;
+}
+
+.container {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Заголовки */
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 10px;
+    font-size: 28px;
+}
+
+.subtitle {
+    text-align: center;
+    color: #666;
+    margin-bottom: 30px;
+    font-size: 16px;
+}
+
+/* Кнопки городов */
+.city-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.city-btn {
+    border: none;
+    padding: 20px;
+    border-radius: 12px;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 80px;
+}
+
+.city-btn:active {
+    transform: scale(0.98);
+}
+
+.city-name {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.city-code {
+    font-size: 12px;
+    opacity: 0.9;
+}
+
+/* Цвета кнопок */
+.green { background: linear-gradient(135deg, #4CAF50, #2E7D32); }
+.blue { background: linear-gradient(135deg, #2196F3, #1565C0); }
+.orange { background: linear-gradient(135deg, #FF9800, #EF6C00); }
+.purple { background: linear-gradient(135deg, #9C27B0, #6A1B9A); }
+.brown { background: linear-gradient(135deg, #795548, #4E342E); }
+.gray { background: linear-gradient(135deg, #607D8B, #37474F); }
+
+/* Информационный блок */
+.info-box {
+    background: #E3F2FD;
+    border-left: 4px solid #2196F3;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+.info-box p {
+    margin: 5px 0;
+    color: #1565C0;
+    font-size: 14px;
+}
+
+/* Шапка поиска */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.back-btn, .help-btn {
+    background: none;
+    border: none;
+    color: #666;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.back-btn:hover, .help-btn:hover {
+    background: #f5f5f5;
+}
+
+/* Поле ввода */
+.input-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+#gmInput {
+    flex: 1;
+    padding: 18px 20px;
+    border: 2px solid #ddd;
+    border-radius: 12px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+#gmInput:focus {
+    outline: none;
+    border-color: #4CAF50;
+}
+
+.search-btn {
+    background: linear-gradient(135deg, #4CAF50, #2E7D32);
+    color: white;
+    border: none;
+    padding: 0 25px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: transform 0.2s;
+}
+
+.search-btn:active {
+    transform: scale(0.95);
+}
+
+/* Результаты */
+.result-container {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 25px;
+    min-height: 200px;
+    margin-bottom: 20px;
+    border: 2px solid #e9ecef;
+}
+
+#resultText {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333;
+    white-space: pre-line;
+}
+
+/* Загрузка */
+.loading {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+}
+
+.loading.active {
+    display: flex;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #4CAF50;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 15px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Модальное окно помощи */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    background: white;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 500px;
+    max-height: 80vh;
+    overflow-y: auto;
+    animation: modalSlide 0.3s ease;
+}
+
+@keyframes modalSlide {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.modal-body {
+    padding: 20px;
+    line-height: 1.6;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: #666;
+    cursor: pointer;
+    padding: 0;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Информация о приложении */
+.app-info {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+    text-align: center;
+    color: #666;
+    font-size: 12px;
+}
+
+.app-info p {
+    margin: 5px 0;
+}
+
+/* Toast уведомления */
+.toast {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #333;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 10px;
+    font-size: 14px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 1001;
+    max-width: 90%;
+    text-align: center;
+}
+
+.toast.show {
+    opacity: 1;
+}
+
+/* Адаптивность */
+@media (max-width: 600px) {
+    .container {
+        padding: 20px;
+    }
+    
+    .city-btn {
+        padding: 15px;
+        min-height: 70px;
+    }
+    
+    h1 {
+        font-size: 24px;
+    }
+    
+    .input-group {
+        flex-direction: column;
+    }
+    
+    .search-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 15px;
+    }
+}
+
+/* iPhone X+ безопасные отступы */
+@supports (padding: max(0px)) {
+    body {
+        padding-left: max(20px, env(safe-area-inset-left));
+        padding-right: max(20px, env(safe-area-inset-right));
+        padding-bottom: max(20px, env(safe-area-inset-bottom));
+    }
+}

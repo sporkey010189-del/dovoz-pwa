@@ -1,0 +1,13 @@
+{
+    "name": "dovoz-pwa",
+    "version": "1.0.0",
+    "description": "PWA приложение для поиска довозов",
+    "main": "index.html",
+    "scripts": {
+        "start": "npx serve .",
+        "deploy": "echo 'Загрузите файлы на хостинг'"
+    },
+    "keywords": ["pwa", "довозы", "логистика"],
+    "author": "Ваше имя",
+    "license": "MIT"
+}
